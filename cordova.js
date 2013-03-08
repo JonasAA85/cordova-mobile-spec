@@ -20,7 +20,7 @@
 */
 
 var VERSION='2.5.0';
-var PLAT = /Android/.exec(navigator.userAgent) ? 'android' : /BB10/.exec(navigator.userAgent) ? 'blackberry' : 'ios';
+var PLAT = getPlatform();
 
 var scripts = document.getElementsByTagName('script');
 var currentPath = scripts[scripts.length - 1].src;
@@ -50,4 +50,14 @@ function backHome() {
 	else {
 	    window.history.go(-1);
 	}
+}
+
+function getPlatform(){
+    if(navigator.userAgent.indexOf("Android") > -1){
+        return 'android';
+    }else if(navigator.userAgent.indexOf("BB10") > -1 || navigator.userAgent.indexOf("PlayBook") > -1 || navigator.userAgent.indexOf("BlackBerry") > -1) {
+        return 'blackberry';
+    }else if(navigator.userAgent.indexOf("iPhone") > -1 || navigator.userAgent.indexOf("iPod"){
+        return 'ios';
+    }
 }
